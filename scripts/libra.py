@@ -64,15 +64,6 @@ class LIBRA(object): # The main class
 
     ############################################################################
     ############################################################################
-    def get_info_based_on_air_cnn(self):
-        print("[INFO] Loading required info.")
-        self.model_path = self.model_path_air
-        self = get_info_from_network(self, self.model_path,
-                                self.Keys_txt_file_input, self.Keys_object)
-
-
-    ############################################################################
-    ############################################################################
     def run_air_preprocessing(self):
         print("[INFO] Air segmentation preprocessing.")
 
@@ -97,35 +88,6 @@ class LIBRA(object): # The main class
         T_End = time()
         print("[INFO] The total elapsed time (for all files in air preprocessing step): "+'\033[1m'+ \
               str(round(T_End-T_Start, 2))+'\033[0m'+" seconds")
-
-
-    ############################################################################
-    ############################################################################
-    def run_air_cnn(self):
-        from load_models import get_network_segmentation
-        from needed_functions_GPU import test_network_air
-
-        T_Start = time()
-        print("[INFO] Air segmentation using CNN is started.")
-        self = get_network_segmentation(self, self.model_path,
-                                        self.Keys_txt_file_input, self.Keys_object)
-
-        self = test_network_air(self)
-
-        T_End = time()
-        print("[INFO] The total elapsed time (for all files in air CNN step): "+'\033[1m'+ \
-              str(round(T_End-T_Start, 2))+'\033[0m'+" seconds")
-
-        print("[INFO] Air segmentation using CNN is done.")
-
-
-    ############################################################################
-    ############################################################################
-    def get_info_based_on_pec_cnn(self):
-        print("[INFO] Loading required info.")
-        self.model_path = self.model_path_pec
-        self = get_info_from_network(self, self.model_path,
-                                self.Keys_txt_file_input, self.Keys_object)
 
 
     ############################################################################
@@ -156,25 +118,6 @@ class LIBRA(object): # The main class
         print("[INFO] The total elapsed time (for all files in pectroal preprocessing step): "+'\033[1m'+ \
               str(round(T_End-T_Start, 2))+'\033[0m'+" seconds")
 
-
-    ############################################################################
-    ############################################################################
-    def run_pec_cnn(self):
-        from load_models import get_network_segmentation
-        from needed_functions_GPU import test_network_pec
-
-        T_Start = time()
-
-        print("[INFO] Pectoral segmentation using CNN is started.")
-        self = get_network_segmentation(self, self.model_path,
-                                        self.Keys_txt_file_input, self.Keys_object)
-        self = test_network_pec(self)
-
-        T_End = time()
-        print("[INFO] The total elapsed time (for all files in pectroal CNN): "+'\033[1m'+ \
-              str(round(T_End-T_Start, 2))+'\033[0m'+" seconds")
-
-        print("[INFO] Pectoral segmentation using CNN is done.")
 
 
     ############################################################################
