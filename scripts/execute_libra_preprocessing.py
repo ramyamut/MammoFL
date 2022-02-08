@@ -7,7 +7,7 @@ from libra import *
 from initialize_variables import set_argparse, get_variables
 
 
-# python3 ~/github/LIBRA/final/execute_libra_code.py -i ~/comp_space/dataset/ -o ~/comp_space/dataset/libra_new2 -m ~/Net
+# python3 ~/github/LIBRA/final/execute_libra_preprocessing.py -i ~/comp_space/dataset/ -o ~/comp_space/dataset/libra_new2
 
 
 class run_libra(object):
@@ -40,8 +40,6 @@ class run_libra(object):
                          "-rii", self.remove_intermediate_images,
                          "-lsm", str(self.libra_segmentation_method)])
 
-
-        Info.get_info_based_on_air_cnn()
 
         Info.run_air_preprocessing()
 
