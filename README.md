@@ -4,6 +4,18 @@ This repository contains the code necessary for running federated training of De
 
 ## Requirements
 
+Make sure all Python packages are installed:
+
+`pip3 install -r requirements.txt`
+
 ## Running Federated Training
+
+### Setting Up Input Directories
+
+### Running the Training Script
+
+Run the following command:
+
+`./pipeline/federated_wrapper.sh` path_to_dicoms_dataset1/ path_to_dicoms_dataset2`
 
 ## Running Inference/PD Calculation
