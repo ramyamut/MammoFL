@@ -25,5 +25,8 @@ mkdir ${dense_masks}
 python3 scripts/inference.py ${dense_preproc_dir} ${dense_masks} ${dense_model}
 
 # postprocess masks
+python3 scripts/postprocess_masks.py ${breast_masks} ${preproc_dir}
+python3 scripts/postprocess_masks.py ${dense_masks} ${preproc_dir}
 
 # PD calculation
+python3 scripts/calculate_pd.py ${breast_masks} ${dense_masks} ${output_dir}
