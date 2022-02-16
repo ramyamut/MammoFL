@@ -1,0 +1,68 @@
+aggregator:
+  settings:
+    best_state_path: save/best.pbuf
+    db_store_rounds: 1
+    init_state_path: save/init.pbuf
+    last_state_path: save/last.pbuf
+    rounds_to_train: 30
+  template: openfl.component.Aggregator
+assigner:
+  settings:
+    task_groups:
+    - name: train_and_validate
+      percentage: 1.0
+      tasks:
+      - aggregated_model_validation
+      - train
+      - locally_tuned_model_validation
+  template: openfl.component.RandomGroupedAssigner
+collaborator:
+  settings:
+    db_store_rounds: 1
+    delta_updates: false
+    epochs_per_round: 1.0
+    opt_treatment: RESET
+    polling_interval: 4
+  template: openfl.component.Collaborator
+compression_pipeline:
+  settings: {}
+  template: openfl.pipelines.NoCompressionPipeline
+data_loader:
+  settings:
+    batch_size: 16
+    collaborator_count: 2
+  template: src.data_loading.PyTorchSegmentationDataLoader
+network:
+  settings:
+    agg_addr: cubic-login3
+    agg_port: 55043
+    cert_folder: cert
+    client_reconnect_interval: 5
+    disable_client_auth: false
+    hash_salt: auto
+    tls: true
+  template: openfl.federation.Network
+task_runner:
+  template: src.fed_density_runner.FederatedUNet
+tasks:
+  aggregated_model_validation:
+    function: validate
+    kwargs:
+      apply: global
+      metrics:
+      - dice_coef
+      - dice_loss
+  locally_tuned_model_validation:
+    function: validate
+    kwargs:
+      apply: local
+      metrics:
+      - dice_coef
+      - dice_loss
+  settings: {}
+  train:
+    function: train_batches
+    kwargs:
+      epochs: 1
+      metrics:
+      - loss
