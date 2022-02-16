@@ -24,6 +24,7 @@ IMG_DIR_DS2 = sys.argv[3]
 MASK_DIR_DS2 = sys.argv[4]
 IMG_DIRS = [IMG_DIR_DS1, IMG_DIR_DS2]
 MASK_DIRS = [MASK_DIR_DS1, MASK_DIR_DS2]
+SAVE_DIR = sys.argv[5]
 
 def optimizer(x): return optim.Adam(x, lr=1e-4)
 
@@ -37,4 +38,4 @@ print('Federated Learning Plan:')
 print(fx.get_plan())
 
 final_fl_model = fx.run_experiment(collaborators, override_config={'aggregator.settings.rounds_to_train': epochs})
-final_fl_model.save_native('results/federated_dense_segmentation/aggregated_model.pth')
+final_fl_model.save_native(f'{SAVE_DIR}/final_aggregated_model.pth')
