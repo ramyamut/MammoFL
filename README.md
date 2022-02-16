@@ -4,9 +4,13 @@ This repository contains the code necessary for running federated training of De
 
 ## Requirements
 
-Make sure all Python packages are installed:
+Python >= 3.6 is required.
+
+Install all necessary Python packages:
 
 `pip3 install -r requirements.txt`
+
+Also, ensure that you are running the code on a machine with access to a GPU (cuda).
 
 ## Running Federated Training
 
