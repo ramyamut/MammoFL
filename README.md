@@ -51,4 +51,6 @@ Run the following command in the terminal, inside the MammoDL directory:
 
 The last argument, the output directory, must already be created.
 
+The final model weights are saved in `output_dir/results_breast_segmentation/final_aggregated_model.pth` and `output_dir/results_dense_segmentation/final_aggregated_model.pth` for the breast and dense tissue segmentation models respectively. The tensorboard logs for the models are saved in `output_dir/results_breast_segmentation/logs/` and `output_dir/results_dense_segmentation/logs/` respectively.
+
 ## Running Inference/PD Calculation
