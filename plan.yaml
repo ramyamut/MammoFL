@@ -31,7 +31,7 @@ data_loader:
   settings:
     batch_size: 16
     collaborator_count: 2
-  template: src.data_loading.PyTorchSegmentationDataLoader
+  template: scripts.data_loading.PyTorchSegmentationDataLoader
 network:
   settings:
     agg_addr: cubic-login3
@@ -43,7 +43,7 @@ network:
     tls: true
   template: openfl.federation.Network
 task_runner:
-  template: src.fed_density_runner.FederatedUNet
+  template: scripts.fed_density_runner.FederatedUNet
 tasks:
   aggregated_model_validation:
     function: validate
