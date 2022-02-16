@@ -41,7 +41,7 @@ class run_libra(object):
                          "-lsm", str(self.libra_segmentation_method)])
 
 
-        Info.run_air_preprocessing()
+        Info.run_breast_preprocessing()
 
         T_End = time()
 
