@@ -73,7 +73,3 @@ mkdir "${results_dense}/logs"
 python3 scripts/federated_segmentation.py ${ds1_dense_img} ${ds1_dense_mask} ${ds2_dense_img} ${ds2_dense_mask} ${results_dense}
 mv save/* "${results_dense}/save/"
 mv logs/cnn_mnist/* "${results_dense}/logs/"
-
-# remove temporary directories
-rm -rf ${ds1_temp}
-rm -rf ${ds2_temp}
