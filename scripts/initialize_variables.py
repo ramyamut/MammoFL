@@ -35,7 +35,7 @@ def set_argparse(argv):
 
     # all images to be saved in; you can go with defaults
     ap.add_argument("-sfnna", "--saving_folder_name_net_air",
-                    default="air_net_data",
+                    default="breast_net_data",
                     help="Foldername for saving the preprocessed air results")
 
     ap.add_argument("-sfnnp", "--saving_folder_name_net_pec",
