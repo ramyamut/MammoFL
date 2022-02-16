@@ -37,12 +37,12 @@ python3 scripts/execute_libra_preprocessing.py -i ${ds1_dicoms} -o ${ds1_temp}
 python3 scripts/execute_libra_preprocessing.py -i ${ds2_dicoms} -o ${ds2_temp}
 cp "${ds1_temp}/breast_net_data/image/*.png" ${ds1_breast_img}
 cp "${ds2_temp}/breast_net_data/image/*.png" ${ds2_breast_img}
-rm -rf ${ds1_temp}
-rm -rf ${ds2_temp}
 
 # preprocess masks to match preprocessed images
-python3 scripts/preprocess_masks.py ${ds1_breast_masks_orig} ${ds1_dense_masks_orig} ${ds1_breast_mask} ${ds1_dense_mask}
-python3 scripts/preprocess_masks.py ${ds2_breast_masks_orig} ${ds2_dense_masks_orig} ${ds2_breast_mask} ${ds2_dense_mask}
+python3 scripts/preprocess_masks.py ${ds1_breast_masks_orig} ${ds1_breast_mask} ${ds1_temp}
+python3 scripts/preprocess_masks.py ${ds1_dense_masks_orig} ${ds1_dense_mask} ${ds1_temp}
+python3 scripts/preprocess_masks.py ${ds2_breast_masks_orig} ${ds2_breast_mask} ${ds2_temp}
+python3 scripts/preprocess_masks.py ${ds2_dense_masks_orig} ${ds2_dense_mask} ${ds2_temp}
 
 # preprocess density segmentation model input images to only include breast
 python3 scripts/preprocess_density_model_input_images.py ${ds1_breast_img} ${ds1_breast_mask} ${ds1_dense_img}
@@ -53,3 +53,7 @@ python3 scripts/federated_segmentation.py ${ds1_breast_img} ${ds1_breast_mask} $
 
 # run federated training for dense tissue segmentation UNet
 python3 scripts/federated_segmentation.py ${ds1_dense_img} ${ds1_dense_mask} ${ds2_dense_img} ${ds2_dense_mask}
+
+# remove temporary directories
+rm -rf ${ds1_temp}
+rm -rf ${ds2_temp}
