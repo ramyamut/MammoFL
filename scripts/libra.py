@@ -52,6 +52,7 @@ class LIBRA(object): # The main class
 
         self.batch_size = self.test_batch_size
         self.image_final_size = self.final_image_size
+        self.image_format = '.png'
 
 
         self.code_path = os.path.abspath(__file__)
@@ -88,36 +89,6 @@ class LIBRA(object): # The main class
         T_End = time()
         print("[INFO] The total elapsed time (for all files in air preprocessing step): "+'\033[1m'+ \
               str(round(T_End-T_Start, 2))+'\033[0m'+" seconds")
-
-
-    ############################################################################
-    ############################################################################
-    def run_pec_preprocessing(self):
-        print("[INFO] Preprocessing for breast vs pectoral segmentation.")
-        T_Start = time()
-
-        Path_segmented_air = os.path.join(self.output_path, self.saving_folder_name_net_pec_temp)
-
-        self.Cases = sorted(glob(os.path.join(Path_segmented_air, "*"+self.image_format)))
-
-        Image_Path = os.path.join(self.output_path, self.saving_folder_name_net_pec)
-        if not(os.path.isdir(Image_Path)): os.makedirs(Image_Path)
-        print("[INFO] Saving path for the summary of this step is "+Image_Path)
-
-        for self.Case in self.Cases:
-            _, File = os.path.split(self.Case)
-            self.File = File[:File.find(self.air_seg_prefix)]
-
-            call(["python3", os.path.join(self.code_path, "preprocessing_pec.py"),
-                  "-i", self.Case, "-if", self.image_format, "-cn", self.File,
-                  "-po", self.print_off, "-sfn", self.saving_folder_name_net_pec,
-                  "-ar", str(self.A_Range), "-fis", str(self.final_image_size),
-                  "-o", self.output_path])
-
-        T_End = time()
-        print("[INFO] The total elapsed time (for all files in pectroal preprocessing step): "+'\033[1m'+ \
-              str(round(T_End-T_Start, 2))+'\033[0m'+" seconds")
-
 
 
     ############################################################################
