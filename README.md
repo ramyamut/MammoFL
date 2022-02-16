@@ -54,3 +54,13 @@ The last argument, the output directory, must already be created.
 The final model weights are saved in `output_dir/results_breast_segmentation/final_aggregated_model.pth` and `output_dir/results_dense_segmentation/final_aggregated_model.pth` for the breast and dense tissue segmentation models respectively. The tensorboard logs for the models are saved in `output_dir/results_breast_segmentation/logs/` and `output_dir/results_dense_segmentation/logs/` respectively.
 
 ## Running Inference/PD Calculation
+
+The input directory must contain a set of 1 or more dicom files for inference. The name of each dicom file will be assumed to be a subject id.
+
+After ensuring the input directory is correct, run the following command in the terminal, inside the MammoDL directory:
+
+`./pipeline/run_inference.sh path_to_input_dir/ path_to_breast_model_pth_file/ path_to_dense_model_pth_file/ output_dir/`
+
+The last argument, the output directory, must already be created.
+
+The breast masks from inference are saved as png images in `output_dir/breast_masks_inference/` with the subject id as the file name. The dense tissue masks from inference are saved as png images in `output_dir/dense_masks_inference/`. The PD calculations for all subjects are saved as a csv file: `output_dir/pd_inference.csv`.
