@@ -18,6 +18,31 @@ Also, ensure that you are running the code on a machine with access to a GPU (cu
 
 ### Setting Up Input Directories
 
+For each of the two datasets, you must have: (1) a directory of mammograms in dicom format, where the file names are exactly the subject identifiers; (2) a directory of breast masks in png format, where the file names are exactly the subject identifiers, each pixel value is either 0 or 1, and the masks have the same dimension as their corresponding dicom images; and (3) a directory of dense tissue masks in png format, with the same constraints as the breast masks.
+
+An example is provided below:
+
+- dataset1
+  - original_dicoms
+    - sub_1.dcm
+    - sub_2.dcm
+  - breast_masks
+    - sub_1.png
+    - sub_2.png
+  - dense_masks
+    - sub_1.png
+    - sub_2.png
+- dataset2
+  - original_dicoms
+    - sub_1.dcm
+    - sub_2.dcm
+  - breast_masks
+    - sub_1.png
+    - sub_2.png
+  - dense_masks
+    - sub_1.png
+    - sub_2.png
+
 ### Running the Training Script
 
 Run the following command in the terminal, inside the MammoDL directory:
