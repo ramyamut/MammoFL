@@ -49,10 +49,18 @@ python3 scripts/preprocess_density_inputs.py ${ds1_breast_img} ${ds1_breast_mask
 python3 scripts/preprocess_density_inputs.py ${ds2_breast_img} ${ds2_breast_mask} ${ds2_dense_img}
 
 # run federated training for breast segmentation UNet
-python3 scripts/federated_segmentation.py ${ds1_breast_img} ${ds1_breast_mask} ${ds2_breast_img} ${ds2_breast_mask}
+results_breast="${output_dir}/results_breast_segmentation"
+mkdir ${results_breast}
+python3 scripts/federated_segmentation.py ${ds1_breast_img} ${ds1_breast_mask} ${ds2_breast_img} ${ds2_breast_mask} ${results_breast}
+mv save/ ${results_breast}
+mv logs/ ${results_breast}
 
 # run federated training for dense tissue segmentation UNet
-python3 scripts/federated_segmentation.py ${ds1_dense_img} ${ds1_dense_mask} ${ds2_dense_img} ${ds2_dense_mask}
+results_dense="${output_dir}/results_dense_segmentation"
+mkdir ${results_dense}
+python3 scripts/federated_segmentation.py ${ds1_dense_img} ${ds1_dense_mask} ${ds2_dense_img} ${ds2_dense_mask} ${results_dense}
+mv save/ ${results_dense}
+mv logs/ ${results_dense}
 
 # remove temporary directories
 rm -rf ${ds1_temp}
