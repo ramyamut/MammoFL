@@ -37,6 +37,8 @@ python3 scripts/execute_libra_preprocessing.py -i ${ds1_dicoms} -o ${ds1_temp}
 python3 scripts/execute_libra_preprocessing.py -i ${ds2_dicoms} -o ${ds2_temp}
 cp "${ds1_temp}/air_net_data/*.png" ${ds1_breast_img}
 cp "${ds2_temp}/air_net_data/*.png" ${ds2_breast_img}
+rm -rf ${ds1_temp}
+rm -rf ${ds2_temp}
 
 # preprocess masks to match preprocessed images
 python3 scripts/preprocess_masks.py ${ds1_breast_masks_orig} ${ds1_dense_masks_orig} ${ds1_breast_mask} ${ds1_dense_mask}
