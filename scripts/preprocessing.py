@@ -34,7 +34,7 @@ ap.add_argument("-ar", "--A_Range", type=int, default=2**8-1,
 ap.add_argument("-fis", "--final_image_size", type=int, default=512,
                 help="The final size of image")
 
-ap.add_argument("-sfn", "--saving_folder_name", default="air_net_data/image",
+ap.add_argument("-sfn", "--saving_folder_name", default="breast_net_data/image",
                 help="The name of folder that the resutls to be saved for batch processing")
 
 ap.add_argument("-lsm", "--libra_segmentation_method", default="Libra",
