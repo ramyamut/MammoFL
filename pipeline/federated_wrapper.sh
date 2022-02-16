@@ -45,8 +45,8 @@ python3 scripts/preprocess_masks.py ${ds2_breast_masks_orig} ${ds2_breast_mask} 
 python3 scripts/preprocess_masks.py ${ds2_dense_masks_orig} ${ds2_dense_mask} ${ds2_temp}
 
 # preprocess density segmentation model input images to only include breast
-python3 scripts/preprocess_density_model_input_images.py ${ds1_breast_img} ${ds1_breast_mask} ${ds1_dense_img}
-python3 scripts/preprocess_density_model_input_images.py ${ds2_breast_img} ${ds2_breast_mask} ${ds2_dense_img}
+python3 scripts/preprocess_density_inputs.py ${ds1_breast_img} ${ds1_breast_mask} ${ds1_dense_img}
+python3 scripts/preprocess_density_inputs.py ${ds2_breast_img} ${ds2_breast_mask} ${ds2_dense_img}
 
 # run federated training for breast segmentation UNet
 python3 scripts/federated_segmentation.py ${ds1_breast_img} ${ds1_breast_mask} ${ds2_breast_img} ${ds2_breast_mask}
