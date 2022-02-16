@@ -48,19 +48,31 @@ python3 scripts/preprocess_masks.py ${ds2_dense_masks_orig} ${ds2_dense_mask} ${
 python3 scripts/preprocess_density_inputs.py ${ds1_breast_img} ${ds1_breast_mask} ${ds1_dense_img}
 python3 scripts/preprocess_density_inputs.py ${ds2_breast_img} ${ds2_breast_mask} ${ds2_dense_img}
 
+# initialize workspace
+python3 scripts/init_workspace.py
+
+# copy workspace to current directory
+rm -f ~/.local/workspace/requirements.txt
+\cp -r ~/.local/workspace/* .
+\cp plan.yaml plan/
+
 # run federated training for breast segmentation UNet
 results_breast="${output_dir}/results_breast_segmentation"
 mkdir ${results_breast}
+mkdir "${results_breast}/save"
+mkdir "${results_breast}/logs"
 python3 scripts/federated_segmentation.py ${ds1_breast_img} ${ds1_breast_mask} ${ds2_breast_img} ${ds2_breast_mask} ${results_breast}
-mv save/ ${results_breast}
-mv logs/ ${results_breast}
+mv save/* "${results_breast}/save/"
+mv logs/cnn_mnist/* "${results_breast}/logs/"
 
 # run federated training for dense tissue segmentation UNet
 results_dense="${output_dir}/results_dense_segmentation"
 mkdir ${results_dense}
+mkdir "${results_dense}/save"
+mkdir "${results_dense}/logs"
 python3 scripts/federated_segmentation.py ${ds1_dense_img} ${ds1_dense_mask} ${ds2_dense_img} ${ds2_dense_mask} ${results_dense}
-mv save/ ${results_dense}
-mv logs/ ${results_dense}
+mv save/* "${results_dense}/save/"
+mv logs/cnn_mnist/* "${results_dense}/logs/"
 
 # remove temporary directories
 rm -rf ${ds1_temp}
