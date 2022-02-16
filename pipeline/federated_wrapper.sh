@@ -35,8 +35,8 @@ mkdir ${ds2_temp}
 # preprocess dicom images into png images as inputs to the breast segmentation model
 python3 scripts/execute_libra_preprocessing.py -i ${ds1_dicoms} -o ${ds1_temp}
 python3 scripts/execute_libra_preprocessing.py -i ${ds2_dicoms} -o ${ds2_temp}
-cp "${ds1_temp}/breast_net_data/*.png" ${ds1_breast_img}
-cp "${ds2_temp}/breast_net_data/*.png" ${ds2_breast_img}
+cp "${ds1_temp}/breast_net_data/image/*.png" ${ds1_breast_img}
+cp "${ds2_temp}/breast_net_data/image/*.png" ${ds2_breast_img}
 rm -rf ${ds1_temp}
 rm -rf ${ds2_temp}
 
