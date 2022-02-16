@@ -3,7 +3,7 @@ import imageio
 import glob
 import sys
 import os
-from utils import object_oriented_preprocessing, fix_ratio, normalize_image
+from utils import object_oriented_preprocessing, fix_ratio
 
 MASKS_RAW = sys.argv[1]
 MASKS_PREPROC = sys.argv[2]
