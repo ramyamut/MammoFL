@@ -53,7 +53,7 @@ class LIBRA(object): # The main class
         self.batch_size = self.test_batch_size
         self.image_final_size = self.final_image_size
         self.image_format = '.png'
-        self.A_range = 255
+        self.A_Range = 255
 
         self.code_path = os.path.abspath(__file__)
         self.code_path,C = os.path.split(self.code_path)
