@@ -65,8 +65,8 @@ class LIBRA(object): # The main class
 
     ############################################################################
     ############################################################################
-    def run_air_preprocessing(self):
-        print("[INFO] Air segmentation preprocessing.")
+    def run_breast_preprocessing(self):
+        print("[INFO] Breast segmentation preprocessing.")
 
         T_Start = time()
 
@@ -87,7 +87,7 @@ class LIBRA(object): # The main class
                   "-lsm", self.libra_segmentation_method, "-fpm", self.find_pacemaker])
 
         T_End = time()
-        print("[INFO] The total elapsed time (for all files in air preprocessing step): "+'\033[1m'+ \
+        print("[INFO] The total elapsed time (for all files in breast segmentation preprocessing step): "+'\033[1m'+ \
               str(round(T_End-T_Start, 2))+'\033[0m'+" seconds")
 
 
