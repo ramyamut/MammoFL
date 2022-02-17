@@ -25,7 +25,7 @@ img_transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize(
 
 for path in image_paths:
     sub_id = path.split('/')[-1]
-    sub_id = path.split('.png')[0]
+    sub_id = sub_id.split('.png')[0]
     img = imageio.imread(path) / 255
     if img.ndim == 2:
         img = np.expand_dims(img, axis=2)

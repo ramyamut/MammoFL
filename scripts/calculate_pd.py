@@ -16,7 +16,7 @@ pds = []
 
 for path in breast_mask_paths:
     sub_id = path.split('/')[-1]
-    sub_id = path.split('.png')[0]
+    sub_id = sub_id.split('.png')[0]
     breast_mask = imageio.imread(path) / 255
     dense_mask_path = f'{DENSE_MASKS}/{sub_id}.png'
     dense_mask = imageio.imread(dense_mask_path) / 255
