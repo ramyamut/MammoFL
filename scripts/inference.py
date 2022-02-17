@@ -14,7 +14,7 @@ torch.manual_seed(42)
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 model = FederatedUNet().to(device)
-model.eval().load_state_dict(torch.load(MODEL_PATH, map_location='cpu'))
+model.eval().load_state_dict(torch.load(MODEL_PATH, map_location='cpu')['model_state_dict'])
 image_paths = glob.glob(f'{IMAGE_DIR}/*.png')
 img_transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 
